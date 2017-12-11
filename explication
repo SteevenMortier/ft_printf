@@ -1,0 +1,14 @@
+s = string
+S = int *
+c = int
+C = int
+p = 0x7fff500d4 ??????????? = void *  = &pointeur
+d = int
+D = int
+i = int
+o = unsigned int
+O = unsigned int
+u = unsigned int
+U = unsigned int
+x = unsigned int
+X = unsigned int
