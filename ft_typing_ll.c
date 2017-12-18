@@ -32,6 +32,8 @@ int		ft_typing_ll(t_conv *conv)
 				ft_ulltoa((unsigned long long int) conv->type),
 				"0123456789", "0123456789ABCDEF");
 	}
+	else if (conv->type_letter == 'u')
+		conv->typing = ft_ulltoa((unsigned long long int)conv->type);
 	else
 		return (0);
 	return (1);

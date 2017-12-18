@@ -13,7 +13,7 @@
 #include "ft_printf.h"
 #include <stdio.h>
 
-#define  __TEST__ "Test -> {%d}\n", 42
+#define  __TEST__ "Test -> '%40.2d' '%7c'\n", 42, '8'
 
 int		main(void)
 {

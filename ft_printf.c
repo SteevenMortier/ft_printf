@@ -21,7 +21,7 @@ t_conv		*ft_newconv(char *str, char c)
 
 	if (!(newconv = (t_conv *)ft_memalloc(sizeof(t_conv))))
 		return (NULL);
-	newconv->first_arg = ft_strdup(str);
+	newconv->first_arg = str;
 	newconv->final_arg = NULL;
 	newconv->type_letter = c;
 	newconv->specifier = NULL;
@@ -48,31 +48,26 @@ t_conv		*ft_create_lst(t_conv *conv, char *str, char c)
 		return (conv);
 	}
 }
-
-t_conv		*ft_fill_lst(t_conv *t_conv, const char * restrict format)
+/////////////////////////STOOP LA//////////////////////////////
+t_conv		*ft_fill_lst(t_conv *t_conv, char * format)
 {
-	unsigned 	index;
-	unsigned 	index_prc;
+	unsigned int	index;
+	unsigned int	index_prc;
 
 	index = 0;
-	while (format[index])
+	while (format[index] && index < ft_strlen(format))
 	{
 		index_prc = 0;
 		if (format[index] == '%')
 		{
+			index++;
 			while (format[index + index_prc] &&
 					!ft_spot_converter(format[index + index_prc]))
-			{
 				index_prc++;
-				if (format[index + index_prc] == '%' ||
-						format[index + index_prc] == '\0') //ERROR
-					return (NULL);
-			}
-			index_prc++;
 			t_conv = ft_create_lst(t_conv,
-								   ft_strsub(format, index + 1, index_prc - 1),
-								   format[index + index_prc - 1]);
-			index += index_prc;
+								   ft_strsub(format, index, index_prc),
+								   format[index + index_prc]);
+			index += index_prc + 1;
 		}
 		else
 		{
@@ -89,11 +84,12 @@ t_conv		*ft_fill_lst(t_conv *t_conv, const char * restrict format)
 
 int		ft_printf(const char * restrict format, ...)
 {
-	va_list arg;
+	va_list		arg;
 	t_conv		*conv;
+	int			ret;
 
 	conv = NULL;
-	conv = ft_fill_lst(conv, format); //Lst bien remplit
+	conv = ft_fill_lst(conv, (char *)format); //Lst bien remplit
 	/*******************DEBUG LST****************************/
 	/*while (conv->next)
 	{
@@ -147,18 +143,35 @@ int		ft_printf(const char * restrict format, ...)
 		conv = conv->next;
 	}*/
 	// JE PENSE QUE TOUT EST BON JUSKE LA
+
 	/*****************ATTRIBUTING*****************/
 	ft_parse_attribute(conv);
 	/***************FIN ATTRIBUTING***************/
 
-
+	ft_attribute_zero(conv);
+	ft_attribute_less(conv);
 	/***************DEBUG ATTRIBUTING*************/
+	ret = 0;
 	while (conv)
 	{
-		ft_putstr(conv->final_arg);
+		if (conv->final_arg == NULL && conv->type_letter == 's')
+		{
+			ft_putstr("(null)");
+			ret += ft_strlen("(null)");
+		}
+		else if (conv->type_letter == 'c' && !conv->lenght_min)
+		{
+			ret++;
+			ft_putchar((char)conv->type);
+		}
+		else
+			ft_putstr(conv->final_arg);
+		ret += (int)ft_strlen(conv->final_arg);
 		conv = conv->next;
 	}
-	//GOOD POUR #, ' ', +
+	//GOOD POUR #, ' ', + et on va dire que c'est bon pour toutes les conversions
 	/*************FIN DEBUG ATTRIBUTING************/
-	return (1);
+
+
+	return (ret);
 }

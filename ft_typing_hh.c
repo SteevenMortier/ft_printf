@@ -18,16 +18,18 @@ int		ft_typing_hh(t_conv *conv)
 		conv->typing = ft_itoa((signed char)conv->type);
 	else if (ft_strchr("o", conv->type_letter))
 		conv->typing = ft_convert_base(
-				ft_itoa((unsigned char)conv->type),
+				ft_ulltoa((unsigned char)conv->type),
 				"0123456789", "01234567");
 	else if (ft_strchr("x", conv->type_letter))
 		conv->typing = ft_convert_base(
-				ft_itoa((unsigned char)conv->type),
+				ft_ulltoa((unsigned char)conv->type),
 				"0123456789", "0123456789abcdef");
 	else if (ft_strchr("X", conv->type_letter))
 		conv->typing = ft_convert_base(
-				ft_itoa((unsigned char)conv->type),
+				ft_ulltoa((unsigned char)conv->type),
 				"0123456789", "0123456789ABCDEF");
+	else if (conv->type_letter == 'u')
+		conv->typing = ft_ulltoa((unsigned char)conv->type);
 	else
 		return (0);
 	return (1);

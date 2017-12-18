@@ -14,7 +14,7 @@
 
 int 	find_it_bfor(char *str, char *to_find)
 {
-	(str) ? str = str + ft_strlen(str) - 3 : NULL;
+	(str) ? str = str + ft_strlen(str) - 2 : NULL;
 	if (str == NULL)
 		return (0);
 	if (ft_strstr(str, to_find))
@@ -24,7 +24,7 @@ int 	find_it_bfor(char *str, char *to_find)
 
 int 	find_it(char *str, char *to_find)
 {
-	(str) ? str = str + ft_strlen(str) - 2 : NULL;
+	(str) ? str = str + ft_strlen(str) - 1 : NULL;
 	if (str == NULL)
 		return (0);
 	if (ft_strstr(str, to_find))

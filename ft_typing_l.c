@@ -39,8 +39,8 @@ int		ft_typing_l(t_conv *conv)
 		conv->typing = ft_strnew(sizeof(wchar_t));
 		conv->typing[0] = (wchar_t)conv->type;
 	}
-	/*else if(ft_strchr("s", conv->type_letter))
-		conv->typing = ft_strdup((wchar_t*)conv->type);*/
+	else if (conv->type_letter == 'u')
+		conv->typing = ft_ulltoa((unsigned long int)conv->type);
 	else
 		return (0);
 	return (1);

@@ -20,11 +20,13 @@ void		ft_parse_attribute(t_conv *conv)
 		{
 			if (ft_strchr(conv->first_arg, '#'))
 				ft_attribute_htag(conv);
-			if (ft_strchr(conv->first_arg, '+'))
+			if (ft_strchr(conv->first_arg, '+') && conv->type_letter != '%')
 				ft_attribute_plus(conv);
-			if (ft_strchr(conv->first_arg, ' '))
+			if (ft_strchr(conv->first_arg, ' ') && conv->type_letter != '%')
 				ft_attribute_space(conv);
-			if (conv->precision || conv->lenght_min)
+			if (!conv->final_arg)
+				conv->final_arg = ft_strdup(conv->typing);
+			if ((conv->precision || conv->lenght_min ))
 				ft_precision_holder(conv);
 		}
 		else

@@ -18,7 +18,7 @@ void	ft_typing(t_conv *conv, va_list arg)
 	//Need a parsing here
 	while (conv)
 	{
-		if (conv->type_letter)
+		if (conv->type_letter && conv->type_letter != '%')
 			conv->type = va_arg(arg, void *);
 		conv = conv->next;
 	}

@@ -53,6 +53,11 @@ SOURCE =	ft_printf.c \
 			ft_lltoa.c   \
 			ft_strrev.c \
 			ft_strcpy.c \
+			ft_precision_xX.c \
+			ft_precision_s.c \
+			ft_precision_pourcent.c \
+			ft_attribute_less.c \
+
 
 
 NAME = libftprintf.a

@@ -46,7 +46,9 @@ void	ft_parse_attribute(t_conv *conv);
 
 void	ft_attribute_htag(t_conv *conv);
 
-char	*ft_attribute_zero(t_conv *conv);
+void	ft_attribute_zero(t_conv *conv);
+
+void	ft_attribute_less(t_conv *conv);
 
 void		ft_attribute_space(t_conv *conv);
 
@@ -72,7 +74,13 @@ int		ft_typing_j(t_conv *conv);
 
 int		ft_typing_z(t_conv *conv);
 
+void	ft_precision_xX(t_conv *conv);
+
 void	ft_typing_to_str(t_conv *conv);
+
+void	ft_precision_s(t_conv *conv);
+
+void	ft_precision_pourcent(t_conv *conv);
 
 char	*ft_convert_base(char *nbr, char *base_from, char *base_to);
 

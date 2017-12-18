@@ -15,7 +15,7 @@
 
 int		ft_spot_converter(char c)
 {
-	if (!ft_strchr("sSpdDioOuUxXcC", c))
+	if (!ft_strchr("sSpdDioOuUxXcC%", c))
 	{
 		return (0);
 	}

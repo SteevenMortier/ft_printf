@@ -15,26 +15,30 @@
 void	normal_typing(t_conv *conv)
 {
 	if (ft_strchr("di", conv->type_letter))
-		conv->typing = ft_strdup(ft_itoa((int)conv->type));
+		conv->typing = ft_itoa((int)conv->type);
 	else if (ft_strchr("o", conv->type_letter))
 		conv->typing = ft_convert_base(
-				ft_itoa((unsigned int)conv->type),
+				ft_ulltoa((unsigned int)conv->type),
 				"0123456789", "01234567");
 	else if (ft_strchr("c", conv->type_letter))
 	{
 		conv->typing = ft_strnew(1);
 		conv->typing[0] = (int)conv->type;
 	}
+	else if (conv->type_letter == '%')
+		conv->typing = "%";
 	else if (ft_strchr("s", conv->type_letter))
 		conv->typing = ft_strdup((char *) conv->type);
+	else if (ft_strchr("u", conv->type_letter))
+		conv->typing = ft_ulltoa((unsigned int)conv->type);
 	else if (ft_strchr("x", conv->type_letter))
-		conv->typing = ft_strdup(ft_convert_base(
-				ft_itoa((unsigned int)conv->type),
-				"0123456789", "0123456789abcdef"));
+		conv->typing = ft_convert_base(
+				ft_ulltoa((unsigned int)conv->type),
+				"0123456789", "0123456789abcdef");
 	else if (ft_strchr("X", conv->type_letter))
-		conv->typing = ft_strdup(ft_convert_base(
-				ft_itoa((unsigned int)conv->type),
-				"0123456789", "0123456789ABCDEF"));
+		conv->typing = ft_convert_base(
+				ft_ulltoa((unsigned int)conv->type),
+				"0123456789", "0123456789ABCDEF");
 }
 
 void	which_one_2(t_conv *conv)
