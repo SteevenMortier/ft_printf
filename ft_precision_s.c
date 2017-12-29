@@ -57,17 +57,23 @@ void		ft_cut_end(t_conv *conv)
 
 void		ft_precision_s(t_conv *conv)
 {
-	if (conv->lenght_min > ft_strlen(conv->typing) && conv->lenght_min)
+	size_t		i;
+
+	if (conv->lenght_min > ft_strlen(conv->typing) && conv->precision)
+		ft_cut_end(conv);
+	else if (!conv->lenght_min && conv->precision)
+		conv->final_arg[conv->precision] = '\0';
+	else if (conv->lenght_min < ft_strlen(conv->typing) &&
+			conv->precision < conv->lenght_min)
+		ft_cut_end(conv);
+	else if (conv->precision < ft_strlen(conv->typing) &&
+			conv->precision > conv->lenght_min)
+		conv->final_arg[conv->precision] = '\0';
+	else if (conv->lenght_min && !conv->precision)
 	{
-		conv->final_arg = ft_realloc((void **)&conv->final_arg, SIZE,
-									 conv->lenght_min);
-		ft_push_str_end3(conv, (int)conv->lenght_min);
-	}
-	if (conv->precision < ft_strlen(conv->typing) && conv->precision)
-	{
-		if (conv->lenght_min)
-			ft_cut_end(conv);
-		else
-			conv->final_arg[conv->precision] = '\0';
+		i = -1;
+		conv->final_arg = ft_strnew(conv->lenght_min);
+		while (++i < conv->lenght_min)
+			conv->final_arg[i] = ' ';
 	}
 }

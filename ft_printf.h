@@ -50,6 +50,8 @@ void	ft_attribute_zero(t_conv *conv);
 
 void	ft_attribute_less(t_conv *conv);
 
+void	ft_hold_precision_zero(t_conv *conv);
+
 void		ft_attribute_space(t_conv *conv);
 
 void		ft_attribute_plus(t_conv *conv);

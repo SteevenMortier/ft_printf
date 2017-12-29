@@ -17,14 +17,14 @@
 
 void		ft_attribute_htag(t_conv *conv)
 {
-	int					i;
-	int					y;
+	int		i;
+	int		y;
 
-	if (CCHR 'o' || CCHR 'x' || CCHR 'X')
+	if ((CCHR 'o' || CCHR 'x' || CCHR 'X' || CCHR 'O') || CCHR 'p')
 		conv->final_arg = ft_strnew((ft_strlen(conv->typing) + 2));
 	else
 		return ;
-	if (ft_strlen(conv->typing) == 1 && conv->typing[0] == '0')
+	if (ft_strlen(conv->typing) == 1 && conv->typing[0] == '0' && !(CCHR 'p'))
 	{
 		STR[0] = '0';
 		return ;
@@ -35,7 +35,7 @@ void		ft_attribute_htag(t_conv *conv)
 	{
 		if (i == 0)
 			STR[i] = '0';
-		else if (i == 1 && conv->type_letter == 'x')
+		else if (i == 1 && (conv->type_letter == 'x' || conv->type_letter == 'p'))
 			STR[i]  = 'x';
 		else if (i == 1 && conv->type_letter == 'X')
 			STR[i] = 'X';

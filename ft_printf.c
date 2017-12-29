@@ -150,8 +150,10 @@ int		ft_printf(const char * restrict format, ...)
 
 	ft_attribute_zero(conv);
 	ft_attribute_less(conv);
+	ft_hold_precision_zero(conv);
 	/***************DEBUG ATTRIBUTING*************/
 	ret = 0;
+	int		i;
 	while (conv)
 	{
 		if (conv->final_arg == NULL && conv->type_letter == 's')
@@ -159,14 +161,23 @@ int		ft_printf(const char * restrict format, ...)
 			ft_putstr("(null)");
 			ret += ft_strlen("(null)");
 		}
-		else if (conv->type_letter == 'c' && !conv->lenght_min)
+		else if (conv->type_letter == 'c' && !(char)conv->type)
 		{
-			ret++;
-			ft_putchar((char)conv->type);
+			i = -1;
+			if (!ft_strchr(conv->first_arg, '.'))
+			{
+				while (++i < (int)ft_strlen(conv->final_arg) - 1)
+					(ft_strchr(conv->first_arg, '0') ? ft_putchar('0') : ft_putchar(' '));
+			}
+			ft_putchar(conv->final_arg[ft_strlen(conv->final_arg)]);
+			ret += (conv->lenght_min) ? (int)ft_strlen(conv->final_arg) :
+				  1;
 		}
 		else
+		{
 			ft_putstr(conv->final_arg);
-		ret += (int)ft_strlen(conv->final_arg);
+			ret += (int)ft_strlen(conv->final_arg);
+		}
 		conv = conv->next;
 	}
 	//GOOD POUR #, ' ', + et on va dire que c'est bon pour toutes les conversions

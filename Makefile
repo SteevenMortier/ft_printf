@@ -57,7 +57,7 @@ SOURCE =	ft_printf.c \
 			ft_precision_s.c \
 			ft_precision_pourcent.c \
 			ft_attribute_less.c \
-
+			ft_hold_precision_zero.c \
 
 
 NAME = libftprintf.a

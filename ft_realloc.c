@@ -8,7 +8,7 @@ void    *ft_realloc(void **ptr, size_t oldsize, size_t newsize)
 {
         void    *freshptr;
 
-        if (!(freshptr = ft_memalloc(sizeof(char) * newsize)))
+        if (!(freshptr = ft_strnew(newsize)))
                 return (NULL);
         if (*ptr)
         {

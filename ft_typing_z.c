@@ -16,7 +16,7 @@ int		ft_typing_z(t_conv *conv)
 {
 	if (ft_strchr("diu", conv->type_letter))
 	{
-		conv->typing = ft_lltoa((ssize_t)conv->type);
+		conv->typing = ft_ulltoa((size_t)conv->type);
 	}
 	else if (ft_strchr("o", conv->type_letter))
 		conv->typing = ft_convert_base(ft_ulltoa((size_t)conv->type),

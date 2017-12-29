@@ -93,7 +93,7 @@ void	ft_attribute_zero(t_conv *conv)
 		{
 			if (conv->type_letter == 'x' || conv->type_letter == 'X')
 				ft_hold_zro_withxX(conv);
-			else if (conv->type_letter != '%')
+			else if (!ft_strchr("%", conv->type_letter))
 				ft_hold_attribute_zero(conv, ft_strchr(conv->first_arg, ' '));
 			else if (conv->type_letter == '%')
 				ft_hold_attribute_zro_prc(conv);

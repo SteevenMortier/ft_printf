@@ -62,7 +62,7 @@ void		ft_hold_precision2(t_conv *conv)
 		i = 0;
 	if (CHARI2 'x' || CHARI2 'X')
 		i += 2;
-	while (!(CHAR '\0')&& (CHAR ' ' || CHAR '0' || CHAR 'x' || CHAR 'X'))
+	while (!(CHAR '\0') && (CHAR ' ' || CHAR '0' || CHAR 'x' || CHAR 'X'))
 	{
 		if (CHAR ' ' || CHAR 'x' || CHAR 'X')
 			conv->final_arg[i] = '0';
