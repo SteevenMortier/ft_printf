@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-int 	find_it_bfor(char *str, char *to_find)
+int		find_it_bfor(char *str, char *to_find)
 {
 	(str) ? str = str + ft_strlen(str) - 2 : NULL;
 	if (str == NULL)
@@ -22,7 +22,7 @@ int 	find_it_bfor(char *str, char *to_find)
 	return (0);
 }
 
-int 	find_it(char *str, char *to_find)
+int		find_it(char *str, char *to_find)
 {
 	(str) ? str = str + ft_strlen(str) - 1 : NULL;
 	if (str == NULL)
@@ -30,6 +30,20 @@ int 	find_it(char *str, char *to_find)
 	if (ft_strstr(str, to_find))
 		return (1);
 	return (0);
+}
+
+void	ls_or_lc_holder(t_conv *conv)
+{
+	if (conv->type_letter == 'c')
+	{
+		conv->type_letter = 'C';
+		conv->specifier = NULL;
+	}
+	else if (conv->type_letter == 's')
+	{
+		conv->type_letter = 'S';
+		conv->specifier = NULL;
+	}
 }
 
 void	get_it(t_conv *conv)
@@ -46,7 +60,12 @@ void	get_it(t_conv *conv)
 		if (find_it_bfor(conv->first_arg, "ll"))
 			conv->specifier = "ll";
 		else
-			conv->specifier = "l";
+		{
+			if (conv->type_letter == 'c' || conv->type_letter == 's')
+				ls_or_lc_holder(conv);
+			else
+				conv->specifier = "l";
+		}
 	}
 	else if (find_it(conv->first_arg, "j"))
 		conv->specifier = "j";

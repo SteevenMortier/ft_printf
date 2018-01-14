@@ -17,43 +17,18 @@
 #define CHARY conv->final_arg[y] ==
 #define CHARI2 conv->final_arg[i + 1] ==
 
-void	ft_replace_points_by_space_pourcent(t_conv *conv)
-{
-	int		i;
-
-	i = -1;
-	while (conv->final_arg[++i])
-		if (CHAR '.')
-	conv->final_arg[i] = ' ';
-}
-
-void		ft_push_str_end_pourcent(t_conv *conv, int size)
+void		ft_precision_pourcent(t_conv *conv)
 {
 	int		i;
 	int		y;
 
-	i = size - 1;
-	while (i != -1)
-	{
-		y = i;
-		while (!conv->final_arg[y] && y != 0)
-			y--;
-		conv->final_arg[i] = conv->final_arg[y];
-		conv->final_arg[y] = '\0';
-		i--;
-	}
-	while (++i < size)
-		if (!conv->final_arg[i])
-			conv->final_arg[i] = '.';
-}
-
-void		ft_precision_pourcent(t_conv *conv)
-{
-	if (conv->lenght_min > ft_strlen(conv->final_arg) && conv->lenght_min)
-	{
-		conv->final_arg = ft_realloc((void **)&conv->final_arg,
-									 SIZE, conv->lenght_min);
-		ft_push_str_end_pourcent(conv, (int)conv->lenght_min);
-		ft_replace_points_by_space_pourcent(conv);
-	}
+	i = -1;
+	printf("final_arg = [%s]\n", conv->first_arg);
+	conv->final_arg = ft_strnew(ft_strlen(conv->first_arg) + conv->lenght_min);
+	while (++i < (int)ft_strlen(conv->first_arg) + (int)conv->lenght_min - 2)
+		conv->final_arg[i] = '.';
+	i = -1;
+	while (++i < (int)conv->lenght_min - 1)
+		conv->final_arg[i] = ' ';
+	y = 0;
 }

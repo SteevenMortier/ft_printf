@@ -15,11 +15,28 @@
 
 void	ft_typing(t_conv *conv, va_list arg)
 {
-	//Need a parsing here
+	int		i;
+
+	i = -1;
 	while (conv)
 	{
-		if (conv->type_letter && conv->type_letter != '%')
+		if (conv->type_letter && conv->type_letter != '5')
 			conv->type = va_arg(arg, void *);
+		if (conv->type_letter == '5')
+		{
+			if (conv->first_arg[0] != '%')
+			{
+				while (ft_isdigit(conv->first_arg[++i]) ||
+									ft_strchr("+-. ", conv->first_arg[i]))
+					;
+				conv->type = ft_strsub(conv->first_arg, i,
+										ft_strlen(conv->first_arg) - i);
+			}
+			else
+				conv->type = ft_strdup("%");
+			conv->type_letter = 's';
+			conv->modified = 1;
+		}
 		conv = conv->next;
 	}
 	va_end(arg);

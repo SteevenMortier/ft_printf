@@ -29,7 +29,7 @@ int		ft_typing_j(t_conv *conv)
 	else if (ft_strchr("X", conv->type_letter))
 	{
 		conv->typing = ft_convert_base(
-				ft_ulltoa((uintmax_t) conv->type),
+				ft_ulltoa((uintmax_t)conv->type),
 				"0123456789", "0123456789ABCDEF");
 	}
 	else if (conv->type_letter == 'u')

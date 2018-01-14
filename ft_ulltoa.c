@@ -16,7 +16,7 @@ char	*ft_ulltoa(unsigned long long int n)
 {
 	long				size;
 	char				*res;
-	unsigned long long ncpy;
+	unsigned long long	ncpy;
 
 	ncpy = n;
 	size = 0;

@@ -12,21 +12,19 @@
 
 #include "ft_printf.h"
 
-#define CHAR conv->final_arg[index] ==
-#define CHARBIS conv->final_arg[indexbis] ==
-
 void		ft_space_case(t_conv *conv)
 {
 	int		index;
 	int		indexbis;
 
 	index = 0;
-	while (conv->final_arg[++index] && index < (int)ft_strlen(conv->final_arg) && CHAR ' ')
+	while (conv->final_arg[++index] && index < (int)ft_strlen(conv->final_arg)
+		&& conv->final_arg[index] == ' ')
 	{
 		indexbis = index;
-		while (conv->final_arg[++indexbis] && CHARBIS ' ')
+		while (conv->final_arg[++indexbis] && conv->final_arg[indexbis] == ' ')
 			;
-		if (CHARBIS '\0')
+		if (conv->final_arg[indexbis] == '\0')
 			return ;
 		conv->final_arg[index] = conv->final_arg[indexbis];
 		conv->final_arg[indexbis] = ' ';
@@ -38,15 +36,18 @@ void		ft_hold_less(t_conv *conv, char *spaceorno)
 	int		index;
 	int		indexbis;
 
-	if (!spaceorno)
+	if (!spaceorno && conv->type_letter != '%')
 	{
 		index = -1;
-		while (conv->final_arg[++index] && index < (int)ft_strlen(conv->final_arg) && CHAR ' ')
+		while (conv->final_arg[++index] &&
+				index < (int)ft_strlen(conv->final_arg) &&
+				conv->final_arg[index] == ' ')
 		{
 			indexbis = index;
-			while (conv->final_arg[++indexbis] && CHARBIS ' ')
+			while (conv->final_arg[++indexbis] &&
+					conv->final_arg[indexbis] == ' ')
 				;
-			if (CHARBIS '\0')
+			if (conv->final_arg[indexbis] == '\0')
 				return ;
 			conv->final_arg[index] = conv->final_arg[indexbis];
 			conv->final_arg[indexbis] = ' ';

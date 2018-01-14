@@ -13,7 +13,7 @@
 #incude "libft/libft.h"
 #include "ft_printf.h"
 
-void 	ft_memdel_all(t_conv *conv)
+void	ft_memdel_all(t_conv *conv)
 {
 	t_conv	*start;
 

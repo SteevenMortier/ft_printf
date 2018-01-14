@@ -42,5 +42,6 @@ int				ft_atoi(const char *str)
 		res = res * 10 + (str[i] - '0');
 		i++;
 	}
+	ft_memdel((void **)&str);
 	return ((neg) ? res * -1 : res);
 }

@@ -53,12 +53,16 @@ SOURCE =	ft_printf.c \
 			ft_lltoa.c   \
 			ft_strrev.c \
 			ft_strcpy.c \
-			ft_precision_xX.c \
+			ft_precision_xandup.c \
 			ft_precision_s.c \
 			ft_precision_pourcent.c \
 			ft_attribute_less.c \
 			ft_hold_precision_zero.c \
-
+			convert_to_utf_eight.c \
+			ft_putstr_ret.c \
+			ft_print_unicode.c \
+			print_everything.c \
+			ft_leaks_holder.c \
 
 NAME = libftprintf.a
 

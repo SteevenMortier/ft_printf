@@ -32,7 +32,6 @@ void		ft_dexist(t_conv *conv)
 	}
 }
 
-
 void		ft_attribute_space(t_conv *conv)
 {
 	if (ft_strchr(conv->first_arg, '+'))

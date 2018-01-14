@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   ft_putstr_ret.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smortier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/07 16:13:14 by smortier          #+#    #+#             */
-/*   Updated: 2017/11/12 15:53:49 by smortier         ###   ########.fr       */
+/*   Created: 2017/12/29 15:56:48 by smortier          #+#    #+#             */
+/*   Updated: 2017/12/29 16:00:33 by smortier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_strcmp(const char *s1, const char *s2)
+int		ft_putstr_ret(char *str, int printorno)
 {
-	int				i;
-	int				res;
-	unsigned char	*str1;
-	unsigned char	*str2;
+	int		i;
 
-	str1 = (unsigned char *)s1;
-	str2 = (unsigned char *)s2;
-	res = 0;
-	i = 0;
-	while (str1[i] == str2[i] && str1[i] && str2[i])
-		i++;
-	res = str1[i] - str2[i];
-	return (res);
+	if (str == NULL)
+		return (0);
+	i = -1;
+	while (str[++i])
+	{
+		if (printorno)
+			ft_putchar(str[i]);
+	}
+	ft_memdel((void **)&str);
+	return (i);
 }

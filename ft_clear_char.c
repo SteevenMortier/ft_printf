@@ -15,8 +15,8 @@
 char	*ft_clear_char(char *str, char c)
 {
 	int		i;
-	int 	y;
-	int 	nb_htag;
+	int		y;
+	int		nb_htag;
 	char	*tmp;
 
 	nb_htag = 0;

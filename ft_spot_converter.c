@@ -10,12 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
 #include "ft_printf.h"
 
 int		ft_spot_converter(char c)
 {
-	if (!ft_strchr("sSpdDioOuUxXcC%", c))
+	if (!ft_strchr("lhjz 0123456789.#+-", c))
 	{
 		return (0);
 	}

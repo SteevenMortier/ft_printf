@@ -17,24 +17,15 @@ int		ft_typing_l(t_conv *conv)
 	if (ft_strchr("di", conv->type_letter))
 		conv->typing = ft_lltoa((long int)conv->type);
 	else if (ft_strchr("o", conv->type_letter))
-	{
-		conv->typing = ft_convert_base(
-				ft_ulltoa((unsigned long int)conv->type),
+		conv->typing = ft_convert_base(ft_ulltoa((unsigned long int)conv->type),
 				"0123456789", "01234567");
-	}
 	else if (ft_strchr("x", conv->type_letter))
-	{
-		conv->typing = ft_convert_base(
-				ft_ulltoa((unsigned long int) conv->type),
+		conv->typing = ft_convert_base(ft_ulltoa((unsigned long int)conv->type),
 				"0123456789", "0123456789abcdef");
-	}
 	else if (ft_strchr("X", conv->type_letter))
-	{
-		conv->typing = ft_convert_base(
-				ft_ulltoa((unsigned long int) conv->type),
+		conv->typing = ft_convert_base(ft_ulltoa((unsigned long int)conv->type),
 				"0123456789", "0123456789ABCDEF");
-	}
-	else if(ft_strchr("c", conv->type_letter))
+	else if (ft_strchr("c", conv->type_letter))
 	{
 		conv->typing = ft_strnew(sizeof(wchar_t));
 		conv->typing[0] = (wchar_t)conv->type;

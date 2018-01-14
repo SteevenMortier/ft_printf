@@ -12,36 +12,40 @@
 
 #include "ft_printf.h"
 
-#define STR conv->final_arg
-#define CCHR conv->type_letter ==
+int			exit_case(t_conv *conv)
+{
+	if (ft_strlen(conv->typing) == 1 && conv->typing[0] == '0' &&
+		conv->type_letter != 'p')
+	{
+		conv->final_arg[0] = '0';
+		return (0);
+	}
+	else
+		return (1);
+}
 
 void		ft_attribute_htag(t_conv *conv)
 {
 	int		i;
 	int		y;
 
-	if ((CCHR 'o' || CCHR 'x' || CCHR 'X' || CCHR 'O') || CCHR 'p')
+	if (ft_strchr("oxXOp", conv->type_letter))
 		conv->final_arg = ft_strnew((ft_strlen(conv->typing) + 2));
-	else
+	if (!exit_case(conv) || !(ft_strchr("oxXOp", conv->type_letter)))
 		return ;
-	if (ft_strlen(conv->typing) == 1 && conv->typing[0] == '0' && !(CCHR 'p'))
-	{
-		STR[0] = '0';
-		return ;
-	}
 	i = 0;
 	y = 0;
 	while ((unsigned long)i < ft_strlen(conv->typing) + 2)
 	{
 		if (i == 0)
-			STR[i] = '0';
-		else if (i == 1 && (conv->type_letter == 'x' || conv->type_letter == 'p'))
-			STR[i]  = 'x';
+			conv->final_arg[i] = '0';
+		else if (i == 1 && ft_strchr("xp", conv->type_letter))
+			conv->final_arg[i] = 'x';
 		else if (i == 1 && conv->type_letter == 'X')
-			STR[i] = 'X';
+			conv->final_arg[i] = 'X';
 		else
 		{
-			STR[i] = conv->typing[y];
+			conv->final_arg[i] = conv->typing[y];
 			y++;
 		}
 		i++;

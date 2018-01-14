@@ -28,7 +28,7 @@ void	normal_typing(t_conv *conv)
 	else if (conv->type_letter == '%')
 		conv->typing = "%";
 	else if (ft_strchr("s", conv->type_letter))
-		conv->typing = ft_strdup((char *) conv->type);
+		conv->typing = ft_strdup((char *)conv->type);
 	else if (ft_strchr("u", conv->type_letter))
 		conv->typing = ft_ulltoa((unsigned int)conv->type);
 	else if (ft_strchr("x", conv->type_letter))
@@ -81,57 +81,25 @@ void	which_one(t_conv *conv)
 		which_one_2(conv);
 }
 
-char	*convert_to_utf_eight(unsigned int c)
-{
-	char *string = ft_strnew(4);
-
-	if (c < 0x80)
-		string[0] = (c >> 0 & 0x7F) | 0x00;
-	else if (c < 0x0800)
-	{
-		string[0] = (c >> 6  & 0x1F) | 0xC0;
-		string[1] = (c >> 0  & 0x3F) | 0x80;
-	}
-	else if (c < 0x010000)
-	{
-		string[0] = (c >> 12 & 0x0F) | 0xE0;
-		string[1] = (c >> 6  & 0x3F) | 0x80;
-		string[2] = (c >> 0  & 0x3F) | 0x80;
-	}
-	else if (c < 0x110000)
-	{
-		string[0] = (c >> 18 & 0x07) | 0xF0;
-		string[1] = (c >> 12 & 0x3F) | 0x80;
-		string[2] = (c >> 6  & 0x3F) | 0x80;
-		string[3] = (c >> 0  & 0x3F) | 0x80;
-	}
-	return (string);
-}
-
 void	ft_hold_maj(t_conv *conv)
 {
-	if (conv->type_letter == 'S')
-	{
-		int i = 0;
-		wchar_t *test = (wchar_t *)conv->type;
-		while (test[i])
-		{
-			ft_putstr(convert_to_utf_eight(test[i]));
-			i++;
-		}
-	}
-	else if (conv->type_letter == 'C')
-	{
-		conv->typing = convert_to_utf_eight((int)conv->type);
-	}
-	else if (ft_strchr("DI", conv->type_letter))
+	if (ft_strchr("DI", conv->type_letter))
 		conv->typing = ft_lltoa((long long int)conv->type);
+	else if (ft_strchr("S", conv->type_letter))
+	{
+		conv->final_argw = (wchar_t *)conv->type;
+	}
+	else if (ft_strchr("C", conv->type_letter))
+	{
+		conv->final_argw = (wchar_t *)ft_strnew(1);
+		conv->final_argw[0] = (wchar_t)conv->type;
+	}
 	else if (conv->type_letter == 'O')
 		conv->typing = ft_convert_base(
 				ft_ulltoa((unsigned long long int)conv->type), "0123456789",
 				"01234567");
 	else
-	conv->typing = ft_ulltoa((unsigned long long int)conv->type);
+		conv->typing = ft_ulltoa((unsigned long long int)conv->type);
 }
 
 void	ft_typing_to_str(t_conv *conv)

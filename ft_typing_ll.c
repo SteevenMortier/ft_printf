@@ -23,13 +23,13 @@ int		ft_typing_ll(t_conv *conv)
 	else if (ft_strchr("x", conv->type_letter))
 	{
 		conv->typing = ft_convert_base(
-				ft_ulltoa((unsigned long long int) conv->type),
+				ft_ulltoa((unsigned long long int)conv->type),
 				"0123456789", "0123456789abcdef");
 	}
 	else if (ft_strchr("X", conv->type_letter))
 	{
 		conv->typing = ft_convert_base(
-				ft_ulltoa((unsigned long long int) conv->type),
+				ft_ulltoa((unsigned long long int)conv->type),
 				"0123456789", "0123456789ABCDEF");
 	}
 	else if (conv->type_letter == 'u')
