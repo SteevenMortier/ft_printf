@@ -21,7 +21,7 @@ int		ft_spot_attribute(t_conv *conv)
 	index = -1;
 	while (conv->first_arg[++index])
 	{
-		if (conv->first_arg[index] >= '1' && conv->first_arg[index] <= '9')
+		if ((conv->first_arg[index] >= '1' && conv->first_arg[index] <= '9') || conv->first_arg[index] == '.')
 			break ;
 		if (conv->first_arg[index] == '0')
 			return (1);

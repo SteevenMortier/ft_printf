@@ -62,8 +62,8 @@ char			*ft_convert_base(char *nbr, char *base_from, char *base_to)
 			res[i] = '\0';
 		}
 	else
-		res[i++] = base_to[0];
-	res[i] = '\0';
+		res[i] = base_to[0];
+	res[++i] = '\0';
 	res = ft_strrev(res);
 	ft_memdel((void **)&nbr);
 	return (res);

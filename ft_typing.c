@@ -29,11 +29,12 @@ void	ft_typing(t_conv *conv, va_list arg)
 				while (ft_isdigit(conv->first_arg[++i]) ||
 									ft_strchr("+-. ", conv->first_arg[i]))
 					;
-				conv->type = ft_strsub(conv->first_arg, i,
+				conv->special = ft_strsub(conv->first_arg, i,
 										ft_strlen(conv->first_arg) - i);
+				conv->type = conv->special;
 			}
 			else
-				conv->type = ft_strdup("%");
+				conv->type = "%";
 			conv->type_letter = 's';
 			conv->modified = 1;
 		}

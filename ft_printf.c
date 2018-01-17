@@ -21,6 +21,7 @@ t_conv		*ft_newconv(char *str, char c)
 	if (!(newconv = (t_conv *)ft_memalloc(sizeof(t_conv))))
 		return (NULL);
 	newconv->first_arg = str;
+	newconv->typing = NULL;
 	newconv->final_arg = NULL;
 	newconv->type_letter = c;
 	newconv->specifier = NULL;
@@ -87,7 +88,8 @@ t_conv		*ft_fill_lst(t_conv *conv, char *format)
 			while (format[index + index_prc] &&
 					format[index + index_prc] != '%')
 				index_prc++;
-			conv = ft_create_lst(conv, ft_strsub(format, index, index_prc), 0);
+			if (index != index_prc)
+				conv = ft_create_lst(conv, ft_strsub(format, index, index_prc), 0);
 			index += index_prc;
 		}
 	}

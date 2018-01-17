@@ -17,10 +17,7 @@ void		ft_point_case(t_conv *conv)
 	if (ft_strchr("oO", conv->type_letter) && ft_strchr(conv->first_arg, '#'))
 		conv->final_arg[0] = '0';
 	else
-	{
-		ft_memdel((void **)conv->final_arg);
-		conv->final_arg = NULL;
-	}
+		ft_memdel((void **)&conv->final_arg);
 }
 
 void		ft_hold_for_case(t_conv *conv)
@@ -28,10 +25,7 @@ void		ft_hold_for_case(t_conv *conv)
 	int		i;
 
 	if (conv->precision == 0 && !conv->lenght_min && !conv->type)
-	{
 		ft_memdel((void **)&conv->final_arg);
-		conv->final_arg = NULL;
-	}
 	if (conv->precision == 0 && !conv->lenght_min && !conv->type
 		&& conv->type_letter != 'd')
 	{

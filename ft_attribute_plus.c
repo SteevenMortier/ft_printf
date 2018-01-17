@@ -18,17 +18,19 @@ void		ft_dexistplus(t_conv *conv)
 
 	if (conv->typing[0] == '-')
 	{
-		conv->final_arg = ft_strdup(conv->typing);
-		return ;
+		conv->final_arg = conv->typing;
+		conv->typing = NULL;
 	}
 	else
-		conv->final_arg = ft_strnew(ft_strlen(conv->typing + 1));
-	i = 0;
-	conv->final_arg[i] = '+';
-	while (conv->typing[i])
 	{
-		conv->final_arg[i + 1] = conv->typing[i];
-		i++;
+		conv->final_arg = ft_strnew(ft_strlen(conv->typing) + 1);
+		i = 0;
+		conv->final_arg[i] = '+';
+		while (conv->typing[i])
+		{
+			conv->final_arg[i + 1] = conv->typing[i];
+			i++;
+		}
 	}
 }
 

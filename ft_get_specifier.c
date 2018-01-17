@@ -12,22 +12,22 @@
 
 #include "ft_printf.h"
 
-int		find_it_bfor(char *str, char *to_find)
+int		find_it_bfor(char *str, char to_find)
 {
-	(str) ? str = str + ft_strlen(str) - 2 : NULL;
-	if (str == NULL)
-		return (0);
-	if (ft_strstr(str, to_find))
+	size_t		len;
+
+	len = ft_strlen(str);
+	if (len > 1 && str[ft_strlen(str) - 2] == to_find)
 		return (1);
 	return (0);
 }
 
-int		find_it(char *str, char *to_find)
+int		find_it(char *str, char to_find)
 {
-	(str) ? str = str + ft_strlen(str) - 1 : NULL;
-	if (str == NULL)
-		return (0);
-	if (ft_strstr(str, to_find))
+	size_t		len;
+
+	len = ft_strlen(str);
+	if (len && str[ft_strlen(str) - 1] == to_find)
 		return (1);
 	return (0);
 }
@@ -48,16 +48,16 @@ void	ls_or_lc_holder(t_conv *conv)
 
 void	get_it(t_conv *conv)
 {
-	if (find_it(conv->first_arg, "h"))
+	if (find_it(conv->first_arg, 'h'))
 	{
-		if (find_it_bfor(conv->first_arg, "hh"))
+		if (find_it_bfor(conv->first_arg, 'h'))
 			conv->specifier = "hh";
 		else
 			conv->specifier = "h";
 	}
-	else if (find_it(conv->first_arg, "l"))
+	else if (find_it(conv->first_arg, 'l'))
 	{
-		if (find_it_bfor(conv->first_arg, "ll"))
+		if (find_it_bfor(conv->first_arg, 'l'))
 			conv->specifier = "ll";
 		else
 		{
@@ -67,9 +67,9 @@ void	get_it(t_conv *conv)
 				conv->specifier = "l";
 		}
 	}
-	else if (find_it(conv->first_arg, "j"))
+	else if (find_it(conv->first_arg, 'j'))
 		conv->specifier = "j";
-	else if (find_it(conv->first_arg, "z"))
+	else if (find_it(conv->first_arg, 'z'))
 		conv->specifier = "z";
 }
 
@@ -78,9 +78,7 @@ void	ft_get_specifier(t_conv *conv)
 	while (conv)
 	{
 		if (conv->type_letter)
-		{
 			get_it(conv);
-		}
 		conv = conv->next;
 	}
 }

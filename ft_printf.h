@@ -30,6 +30,7 @@ typedef struct			s_conv
 	size_t			lenght_min;
 	char			*specifier;
 	void			*type;
+	char			*special;
 	wchar_t			*final_argw;
 	int				modified;
 	struct s_conv	*next;

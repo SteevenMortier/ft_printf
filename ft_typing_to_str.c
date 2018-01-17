@@ -16,26 +16,26 @@ void	normal_typing(t_conv *conv)
 {
 	if (ft_strchr("di", conv->type_letter))
 		conv->typing = ft_itoa((int)conv->type);
-	else if (ft_strchr("o", conv->type_letter))
+	else if ('o' == conv->type_letter)
 		conv->typing = ft_convert_base(
 				ft_ulltoa((unsigned int)conv->type),
 				"0123456789", "01234567");
-	else if (ft_strchr("c", conv->type_letter))
+	else if ('c' == conv->type_letter)
 	{
 		conv->typing = ft_strnew(1);
 		conv->typing[0] = (char)conv->type;
 	}
 	else if (conv->type_letter == '%')
 		conv->typing = "%";
-	else if (ft_strchr("s", conv->type_letter))
+	else if ('s' == conv->type_letter)
 		conv->typing = ft_strdup((char *)conv->type);
-	else if (ft_strchr("u", conv->type_letter))
+	else if ('u' == conv->type_letter)
 		conv->typing = ft_ulltoa((unsigned int)conv->type);
-	else if (ft_strchr("x", conv->type_letter))
+	else if ('x' == conv->type_letter)
 		conv->typing = ft_convert_base(
 				ft_ulltoa((unsigned int)conv->type),
 				"0123456789", "0123456789abcdef");
-	else if (ft_strchr("X", conv->type_letter))
+	else if ('X' == conv->type_letter)
 		conv->typing = ft_convert_base(
 				ft_ulltoa((unsigned int)conv->type),
 				"0123456789", "0123456789ABCDEF");
@@ -85,13 +85,13 @@ void	ft_hold_maj(t_conv *conv)
 {
 	if (ft_strchr("DI", conv->type_letter))
 		conv->typing = ft_lltoa((long long int)conv->type);
-	else if (ft_strchr("S", conv->type_letter))
+	else if (conv->type_letter == 'S')
 	{
 		conv->final_argw = (wchar_t *)conv->type;
 	}
-	else if (ft_strchr("C", conv->type_letter))
+	else if (conv->type_letter == 'C')
 	{
-		conv->final_argw = (wchar_t *)ft_strnew(1);
+		conv->final_argw = (wchar_t *)ft_memalloc(sizeof(wchar_t) * 2);
 		conv->final_argw[0] = (wchar_t)conv->type;
 	}
 	else if (conv->type_letter == 'O')

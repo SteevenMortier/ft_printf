@@ -15,21 +15,26 @@
 void		ft_dexist(t_conv *conv)
 {
 	int		i;
+	size_t	len;
 
 	if (conv->typing[0] == '-')
 	{
-		conv->final_arg = ft_strdup(conv->typing);
-		return ;
+		conv->final_arg = conv->typing;
+		conv->typing = NULL;
 	}
 	else
-		conv->final_arg = ft_strnew(ft_strlen(conv->typing + 1));
-	i = 1;
-	conv->final_arg[0] = ' ';
-	while (conv->typing[i - 1])
 	{
-		conv->final_arg[i] = conv->typing[i - 1];
-		i++;
+		len = ft_strlen(conv->typing);
+		conv->final_arg = ft_strnew(len + 1);
+		i = 0;
+		conv->final_arg[i] = ' ';
+		while (conv->typing[i])
+		{
+			conv->final_arg[i + 1] = conv->typing[i];
+			i++;
+		}
 	}
+
 }
 
 void		ft_attribute_space(t_conv *conv)
