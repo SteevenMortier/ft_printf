@@ -24,7 +24,7 @@ void	ft_typing(t_conv *conv, va_list arg)
 			conv->type = va_arg(arg, void *);
 		if (conv->type_letter == '5')
 		{
-			if (conv->first_arg[0] != '%')
+			if (conv->first_arg[ft_strlen(conv->first_arg) - 1] != '%')
 			{
 				while (ft_isdigit(conv->first_arg[++i]) ||
 									ft_strchr("+-. ", conv->first_arg[i]))

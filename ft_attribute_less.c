@@ -65,7 +65,7 @@ void		ft_attribute_less(t_conv *conv)
 		{
 			if (ft_strchr(conv->first_arg, '-') && conv->final_arg)
 			{
-				if (conv->type_letter != '%')
+				if (!conv->modified)
 					ft_hold_less(conv, ft_strchr(conv->first_arg, ' '));
 				else
 					ft_hold_less(conv, NULL);

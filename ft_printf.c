@@ -56,7 +56,7 @@ t_conv		*norme_help_lst(t_conv *conv, char *format, unsigned int index,
 {
 	if ((!ft_strchr("dDiIuUoOxXcCsSp", format[index + index_prc])))
 		conv = ft_create_lst(conv,
-							ft_strsub(format, index, index_prc + 1), '5');
+							 ft_strsub(format, index, index_prc + 1), '5');
 	else
 	{
 		conv = ft_create_lst(conv,
@@ -88,7 +88,6 @@ t_conv		*ft_fill_lst(t_conv *conv, char *format)
 			while (format[index + index_prc] &&
 					format[index + index_prc] != '%')
 				index_prc++;
-			if (index != index_prc)
 				conv = ft_create_lst(conv, ft_strsub(format, index, index_prc), 0);
 			index += index_prc;
 		}

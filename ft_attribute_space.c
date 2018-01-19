@@ -34,7 +34,6 @@ void		ft_dexist(t_conv *conv)
 			i++;
 		}
 	}
-
 }
 
 void		ft_attribute_space(t_conv *conv)

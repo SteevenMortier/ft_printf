@@ -34,30 +34,22 @@ void		ft_push_str_end2(t_conv *conv, int size)
 
 void		ft_hold_precision2(t_conv *conv)
 {
-	int		i;
-	int		y;
+	int		index;
 
-	i = 0;
-	if (conv->lenght_min > conv->precision)
-		i = conv->lenght_min - conv->precision;
-	y = i;
-	while (conv->final_arg[++y])
+	conv->final_arg[0] = '0';
+	conv->final_arg[1] = conv->type_letter;
+	index = 2;
+	if (conv->final_arg[index] == '0' ||
+			conv->final_arg[index] == conv->type_letter ||
+			conv->final_arg[index] == ' ')
 	{
-		if (conv->final_arg[y] == 'x' || conv->final_arg[y] == 'X')
+		while (conv->final_arg[index] && (conv->final_arg[index] != 'x' &&
+										  conv->final_arg[index] != 'X'))
 		{
-			conv->final_arg[i] = conv->final_arg[y - 1];
-			conv->final_arg[i + 1] = conv->final_arg[y];
+			conv->final_arg[index] = '0';
+			index++;
 		}
-	}
-	i = 0;
-	if (conv->lenght_min > conv->precision)
-		i = conv->lenght_min - conv->precision;
-	i += (ft_strchr("xX", conv->final_arg[i + 1])) ? 2 : 0;
-	while (conv->final_arg[i] == '\0' && ft_strchr(" 0xX", conv->final_arg[i]))
-	{
-		if (ft_strchr(" xX", conv->final_arg[i]))
-			conv->final_arg[i] = '0';
-		i++;
+		conv->final_arg[index] = '0';
 	}
 }
 

@@ -27,8 +27,12 @@ void	normal_typing(t_conv *conv)
 	}
 	else if (conv->type_letter == '%')
 		conv->typing = "%";
-	else if ('s' == conv->type_letter)
+	else if ('s' == conv->type_letter && conv->type)
 		conv->typing = ft_strdup((char *)conv->type);
+	else if (conv->type_letter == 's' && !conv->type && !conv->modified)
+		conv->typing = ft_strdup("(null)");
+	else if (conv->modified)
+		conv->typing = ft_strdup("%");
 	else if ('u' == conv->type_letter)
 		conv->typing = ft_ulltoa((unsigned int)conv->type);
 	else if ('x' == conv->type_letter)

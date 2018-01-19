@@ -105,10 +105,11 @@ void		ft_precision_holder(t_conv *conv)
 {
 	if (conv->type_letter == '%')
 		ft_precision_pourcent(conv);
-	else if (conv->type_letter == 's')
+	else if (conv->type_letter == 's' && conv->typing)
 		ft_precision_s(conv);
 	else if (ft_strchr(conv->final_arg, 'X') || ft_strchr(conv->final_arg, 'x'))
 		ft_precision_xandup(conv);
-	else if (conv->type_letter != 'S' && conv->type_letter != 'C')
+	else if (conv->type_letter != 'S' && conv->type_letter != 'C' &&
+			conv->type_letter != 's')
 		ft_existprec(conv);
 }

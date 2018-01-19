@@ -90,7 +90,8 @@ void	ft_attribute_zero(t_conv *conv)
 	while (conv)
 	{
 		if (ft_spot_attribute(conv) && !conv->precision &&
-				!ft_strchr(conv->first_arg, '-'))
+				!ft_strchr(conv->first_arg, '-') &&
+				!ft_strchr(conv->first_arg, '.'))
 		{
 			if (conv->type_letter == 'x' || conv->type_letter == 'X' ||
 					conv->type_letter == 'p')

@@ -18,7 +18,7 @@ void		ft_parse_attribute(t_conv *conv)
 	{
 		if (conv->type_letter)
 		{
-			if (ft_strchr(conv->first_arg, '#') || conv->type_letter == 'p')
+			if ((ft_strchr(conv->first_arg, '#') || conv->type_letter == 'p'))
 				ft_attribute_htag(conv);
 			if (ft_strchr(conv->first_arg, '+')
 				&& !ft_strchr("%usScCoOpxX", conv->type_letter))
@@ -28,7 +28,8 @@ void		ft_parse_attribute(t_conv *conv)
 				ft_attribute_space(conv);
 			if (!conv->final_arg && conv->type_letter != '%')
 				conv->final_arg = ft_strdup(conv->typing);
-			if ((conv->precision || conv->lenght_min))
+			if ((conv->precision || conv->lenght_min) ||
+					ft_strchr(conv->first_arg, '.'))
 				ft_precision_holder(conv);
 		}
 		else

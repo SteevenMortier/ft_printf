@@ -72,8 +72,7 @@ int		print_everything(t_conv *conv)
 	ret = 0;
 	while (conv)
 	{
-		if (!conv->type && ft_strchr("sS", conv->type_letter) &&
-			conv->type_letter)
+		if (!conv->type && conv->type_letter == 'S')
 			ret += null_case();
 		else if ((conv->type_letter == 'c' && !conv->type))
 			ret += norme_helper(conv);

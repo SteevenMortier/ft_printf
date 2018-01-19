@@ -14,11 +14,30 @@
 
 #define SIZE ft_strlen(conv->final_arg)
 
+void		ft_special_case_s(t_conv *conv)
+{
+	int		i;
+
+	i = -1;
+	while (++i < (int)conv->lenght_min)
+	{
+		conv->final_arg[i] = ' ';
+	}
+	conv->final_arg[i] = 0;
+}
+
 void		ft_cut_end(t_conv *conv)
 {
 	int		i;
 	int		y;
 
+	if (conv->lenght_min && !conv->precision && ft_strchr(conv->first_arg, '.'))
+	{
+		ft_special_case_s(conv);
+		return ;
+	}
+	if (conv->lenght_min < ft_strlen(conv->type))
+		return ;
 	if (conv->precision)
 		conv->typing[conv->precision] = '\0';
 	i = 0;
@@ -40,15 +59,15 @@ void		ft_precision_s(t_conv *conv)
 {
 	size_t		i;
 
-	if (conv->type && conv->lenght_min > ft_strlen(conv->typing))
+	if (conv->typing && conv->lenght_min > ft_strlen(conv->typing))
 		ft_cut_end(conv);
 	else if (!conv->lenght_min && conv->precision)
 		conv->final_arg[conv->precision] = '\0';
-	else if (conv->lenght_min < ft_strlen(conv->typing) &&
+	else if (conv->lenght_min <= ft_strlen(conv->typing) &&
 			conv->precision < conv->lenght_min)
 		ft_cut_end(conv);
 	else if (conv->precision < ft_strlen(conv->typing) &&
-			conv->precision > conv->lenght_min)
+			conv->precision >= conv->lenght_min && !conv->modified)
 		conv->final_arg[conv->precision] = '\0';
 	if (conv->lenght_min && !conv->precision &&
 			!conv->modified && conv->lenght_min > ft_strlen(conv->typing) &&

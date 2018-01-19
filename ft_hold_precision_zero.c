@@ -16,6 +16,10 @@ void		ft_point_case(t_conv *conv)
 {
 	if (ft_strchr("oO", conv->type_letter) && ft_strchr(conv->first_arg, '#'))
 		conv->final_arg[0] = '0';
+	else if (ft_strchr(conv->first_arg, '+'))
+		conv->final_arg[0] = '+';
+	else if (ft_strchr(conv->first_arg, ' '))
+		conv->final_arg[0] = ' ';
 	else
 		ft_memdel((void **)&conv->final_arg);
 }
@@ -38,9 +42,12 @@ void		ft_hold_for_case(t_conv *conv)
 	else if (!conv->precision && conv->lenght_min && !conv->type)
 	{
 		i = -1;
-		while (conv->final_arg[++i])
-			if (conv->final_arg[i] != ' ')
-				conv->final_arg[i] = ' ';
+		if (!ft_strchr(conv->first_arg, '0'))
+		{
+			while (conv->final_arg[++i])
+				if (conv->final_arg[i] != ' ' && conv->type_letter != 'o')
+					conv->final_arg[i] = ' ';
+		}
 	}
 }
 
@@ -48,10 +55,11 @@ void		ft_hold_precision_zero(t_conv *conv)
 {
 	while (conv)
 	{
-		if (conv->type_letter == 'd' && !ft_strchr(conv->first_arg, '.')
+		if (ft_strchr("dD", conv->type_letter) &&
+				!ft_strchr(conv->first_arg, '.')
 			&& !(long long int)conv->type)
 			;
-		else if (ft_strchr("diuoxXO", conv->type_letter) && conv->type_letter)
+		else if (ft_strchr("dDiuUoxXO", conv->type_letter) && conv->type_letter)
 			ft_hold_for_case(conv);
 		else if (conv->type_letter == 'p' && !conv->type && !conv->precision &&
 				ft_strchr(conv->first_arg, '.'))
